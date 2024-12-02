@@ -18,7 +18,7 @@ fn solve(event: u32, day: u32, part: u32, wrapper: fn(&str) -> String) {
     let path = format!("input/event{event}/aoc_e{event}_d{day:02}_p{part}.txt");
 
     if let Ok(notes) = read_to_string(&path) {
-        println!("    Part {part}: {BOLD}{WHITE}{}{RESET}", wrapper(&notes));
+        println!("    Part {part}: {BOLD}{RED}{}{RESET}", wrapper(&notes));
     } else {
         eprintln!("    Part {part}: {BOLD}{WHITE}{path}{RESET} missing");
     }
@@ -45,5 +45,5 @@ macro_rules! solution {
 }
 
 fn event2024() -> Vec<Solution> {
-    vec![solution!(event2024, day01)]
+    vec![solution!(event2024, day01), solution!(event2024, day02)]
 }
