@@ -25,8 +25,7 @@ pub fn part2(notes: &str) -> u32 {
 
 fn count_mul(notes: &str) -> u32 {
     let mul_re: Regex = Regex::new(r"mul\((\d*),(\d*)\)").unwrap();
-    notes
-        .lines()
-        .flat_map(|line| mul_re.captures_iter(line).collect::<Vec<_>>())
+    mul_re
+        .captures_iter(notes)
         .fold(0, |acc, cap| acc + (&cap[1]).int::<u32>() * (&cap[2]).int::<u32>())
 }
