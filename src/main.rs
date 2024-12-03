@@ -1,5 +1,5 @@
-use aoc::util::ansi::*;
 use aoc::*;
+use aoc::util::ansi::*;
 use std::fs::read_to_string;
 use std::iter::empty;
 
@@ -45,5 +45,5 @@ macro_rules! solution {
 }
 
 fn event2024() -> Vec<Solution> {
-    vec![solution!(event2024, day01), solution!(event2024, day02)]
+    vec![solution!(event2024, day01), solution!(event2024, day02), solution!(event2024, day03)]
 }
