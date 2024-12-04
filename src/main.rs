@@ -45,5 +45,5 @@ macro_rules! solution {
 }
 
 fn event2024() -> Vec<Solution> {
-    vec![solution!(event2024, day01), solution!(event2024, day02), solution!(event2024, day03)]
+    vec![solution!(event2024, day01), solution!(event2024, day02), solution!(event2024, day03), solution!(event2024, day04)]
 }
