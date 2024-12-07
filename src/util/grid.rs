@@ -1,5 +1,6 @@
 use crate::util::coord::Coord2;
 
+#[derive(Clone)]
 pub struct Grid<T> {
     pub width: u32,
     pub height: u32,
@@ -33,5 +34,11 @@ impl<T> Grid<T> {
         let x = index % self.width;
         let y = index / self.width;
         Coord2 { x: x as i32, y: y as i32 }
+    }
+    
+    pub fn index_at(&self, coord: Coord2) -> usize {
+        let x = coord.x;
+        let y = coord.y;
+        (y * self.width as i32 + x) as usize
     }
 }

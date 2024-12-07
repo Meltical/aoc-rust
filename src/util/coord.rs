@@ -1,6 +1,6 @@
 use std::ops::{Add, Mul};
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Coord2 {
     pub x: i32,
     pub y: i32,
@@ -9,6 +9,14 @@ pub struct Coord2 {
 impl Coord2 {
     pub fn new(x: i32, y: i32) -> Coord2 {
         Coord2 { x, y }
+    }
+
+    pub fn rotate_cw(&self, n: u8) -> Coord2 {
+        let mut new = self.clone();
+        for _ in 0..n {
+            (new.x, new.y) = (-new.y, new.x);
+        }
+        new
     }
 }
 
