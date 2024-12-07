@@ -1,13 +1,24 @@
 use crate::util::coord::Coord2;
+use crate::util::day::Day;
 use crate::util::grid::Grid;
 use std::collections::HashSet;
 
-pub fn part1(notes: &str) -> u32 {
-    count(count_part1, notes, 'X')
-}
+pub struct Day04;
+impl Day for Day04 {
+    type Input = String;
+    fn parse(notes: &str) -> Self::Input {
+        String::from(notes)
+    }
 
-pub fn part2(notes: &str) -> u32 {
-    count(count_part2, notes, 'A')
+    type Output1 = u32;
+    fn part_1(input: &Self::Input) -> Self::Output1 {
+        count(count_part1, input.as_str(), 'X')
+    }
+
+    type Output2 = u32;
+    fn part_2(input: &Self::Input) -> Self::Output2 {
+        count(count_part2, input.as_str(), 'X')
+    }
 }
 
 fn count_part1(grid: &Grid<char>, start: Coord2) -> u32 {
