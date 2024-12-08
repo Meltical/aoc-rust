@@ -16,6 +16,14 @@ impl Grid<char> {
             data: lines.iter().flat_map(|l| l.chars()).collect(),
         }
     }
+    pub fn log(&self) {
+        for chunk in self.data.chunks(self.width as usize) {
+            for c in chunk {
+                print!("{c}");
+            }
+            println!();
+        }
+    }
 }
 
 impl<T> Grid<T> {
@@ -35,7 +43,7 @@ impl<T> Grid<T> {
         let y = index / self.width;
         Coord2 { x: x as i32, y: y as i32 }
     }
-    
+
     pub fn index_at(&self, coord: Coord2) -> usize {
         let x = coord.x;
         let y = coord.y;
