@@ -1,6 +1,5 @@
 use crate::util::day::Day;
-use crate::util::integer::ParseOps;
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 pub struct Day09;
 impl Day for Day09 {
@@ -9,8 +8,7 @@ impl Day for Day09 {
         notes.to_string()
     }
 
-    //12345 -> 0..111....22222
-    type Output1 = u32;
+    type Output1 = u64;
     fn part_1(input: &Self::Input) -> Self::Output1 {
         let mut files = Vec::<i32>::new();
         for (i, c) in input.chars().enumerate() {
@@ -29,18 +27,60 @@ impl Day for Day09 {
             if files[i] == -1 {
                 let (last_idx, last) =
                     files[..last_index + 1].iter().enumerate().rfind(|(_, x)| **x != -1).unwrap();
+                if last_idx < i {
+                    break;
+                }
                 last_index = last_idx;
                 files[i] = *last;
                 files[last_idx] = -1;
             }
-            sum += files[i] * (i as i32);
+            sum += (files[i] as u64) * (i as u64);
         }
-        println!("{:?}", files);
-        0
+        sum
     }
 
-    type Output2 = u32;
+    type Output2 = u128;
     fn part_2(input: &Self::Input) -> Self::Output2 {
+        let mut tuples = input
+            .chars()
+            .enumerate()
+            .map(|(idx, c)| {
+                return if idx % 2 == 0 {
+                    (c.to_digit(10).unwrap(), (idx / 2) as i32)
+                } else {
+                    (c.to_digit(10).unwrap(), -1)
+                };
+            })
+            .collect::<Vec<(u32, i32)>>();
+        println!("{:?}", tuples);
+        for mut i in (0..tuples.len()).rev() {
+            let (x, n) = tuples[i];
+            for j in 0..i {
+                let (x1, n1) = tuples[j];
+                if n1 != -1 || x1 < x {
+                    continue;
+                }
+                let z = x1 - x;
+                if z == 0 {
+                    tuples[j] = (x1, n);
+                    tuples[i] = (x, -1);
+                    i += 1;
+                } else {
+                    tuples[j] = (x, n);
+                    let (x2, n2) = tuples[j + 1];
+                    if n2 == -1 {
+                        tuples.remove(j + 2);
+                        tuples[j + 1] = (z + x2, -1);
+                    } else {
+                        tuples.insert(j + 1, (z, -1));
+                    }
+                }
+                tuples[i] = (x, -1);
+                break;
+            }
+        }
+        println!("{:?}", tuples);
         0
     }
 }
+// 00992111777.44.333....5555.6666.....8888..
