@@ -7,7 +7,7 @@ pub struct Day06;
 impl Day for Day06 {
     type Input = (u32, u32);
     fn parse(notes: &str) -> Self::Input {
-        let initial_grid = Grid::new(notes);
+        let initial_grid = Grid::<char>::new(notes);
         let start_idx = initial_grid.data.iter().position(|v| *v == '^').unwrap();
         let start = State {
             position: initial_grid.coord_at(start_idx as u32),

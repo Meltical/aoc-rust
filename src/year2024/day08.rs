@@ -7,7 +7,7 @@ pub struct Day08;
 impl Day for Day08 {
     type Input = (Grid<char>, HashMap<char, HashSet<Coord2>>);
     fn parse(notes: &str) -> Self::Input {
-        let grid = Grid::new(notes);
+        let grid = Grid::<char>::new(notes);
         let mut coords = HashMap::<char, HashSet<Coord2>>::new();
         for (idx, &c) in grid.data.iter().enumerate().filter(|(_, &c)| c != '.') {
             coords.entry(c).or_insert_with(HashSet::new).insert(grid.coord_at(idx as u32));

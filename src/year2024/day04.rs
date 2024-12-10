@@ -60,7 +60,7 @@ fn count(
     notes: &str,
     start_char: char,
 ) -> u32 {
-    let grid = Grid::new(notes);
+    let grid = Grid::<char>::new(notes);
     grid.data
         .iter()
         .enumerate()

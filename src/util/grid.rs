@@ -16,17 +16,20 @@ impl Grid<char> {
             data: lines.iter().flat_map(|l| l.chars()).collect(),
         }
     }
-    pub fn log(&self) {
-        for chunk in self.data.chunks(self.width as usize) {
-            for c in chunk {
-                print!("{c}");
-            }
-            println!();
+}
+
+impl Grid<u32> {
+    pub fn new(data: &str) -> Grid<u32> {
+        let lines = data.lines().collect::<Vec<_>>();
+        Grid {
+            width: lines[0].len() as u32,
+            height: lines.len() as u32,
+            data: lines.iter().flat_map(|l| l.chars().map(|c| c.to_digit(10).unwrap())).collect(),
         }
     }
 }
 
-impl<T> Grid<T> {
+impl<T: std::fmt::Display> Grid<T> {
     pub fn at(&self, point: Coord2) -> Option<&T> {
         let x = point.x;
         let y = point.y;
@@ -48,5 +51,13 @@ impl<T> Grid<T> {
         let x = coord.x;
         let y = coord.y;
         (y * self.width as i32 + x) as usize
+    }
+    pub fn log(&self) {
+        for chunk in self.data.chunks(self.width as usize) {
+            for c in chunk {
+                print!("{c}");
+            }
+            println!();
+        }
     }
 }
