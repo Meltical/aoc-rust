@@ -16,4 +16,5 @@ fn run_2024() {
     // year2024::day08::Day08::run_day(2024, 8);
     // year2024::day09::Day09::run_day(2024, 9);
     year2024::day10::Day10::run_day(2024, 10);
+    year2024::day11::Day11::run_day(2024, 11);
 }
