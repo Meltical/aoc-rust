@@ -30,6 +30,10 @@ impl Coord2 {
     pub fn mirrored_by(self, other: Coord2) -> Coord2 {
         other * 2 - self
     }
+    
+    pub fn distance(self, other: Coord2) -> i32 {
+        (self.x - other.x).abs() + (self.y - other.y).abs()
+    }
 }
 
 impl Mul<Coord2> for Coord2 {
