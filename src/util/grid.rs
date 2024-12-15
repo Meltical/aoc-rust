@@ -52,6 +52,7 @@ impl<T: std::fmt::Display> Grid<T> {
         let y = coord.y;
         (y * self.width as i32 + x) as usize
     }
+
     pub fn log(&self) {
         for chunk in self.data.chunks(self.width as usize) {
             for c in chunk {
