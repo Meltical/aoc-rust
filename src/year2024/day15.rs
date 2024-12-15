@@ -85,7 +85,7 @@ fn step(grid: &mut Grid<char>, position: &mut Coord2, direction: Coord2, part1: 
         }) {
             return;
         }
-        //Move all boxes
+        //Move all boxes, we must sort from furthest to closest otherwise we would override part of a box ('[' or ']') with a '.'
         for current_box in
             boxes.iter().sorted_by(|&&(a, _), &&(b, _)| match (direction.x, direction.y) {
                 (0, 1) => b.y.cmp(&a.y),
