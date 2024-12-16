@@ -1,3 +1,4 @@
+use std::ops::{Index, IndexMut};
 use crate::util::coord::Coord2;
 
 #[derive(Clone)]
@@ -29,7 +30,7 @@ impl Grid<u32> {
     }
 }
 
-impl<T: std::fmt::Display> Grid<T> {
+impl<T: std::fmt::Display + PartialEq> Grid<T> {
     pub fn at(&self, point: Coord2) -> Option<&T> {
         let x = point.x;
         let y = point.y;
@@ -59,6 +60,21 @@ impl<T: std::fmt::Display> Grid<T> {
                 print!("{c}");
             }
             println!();
+        }
+    }
+
+    pub fn find(&self, value: T) -> Option<Coord2> {
+        if let Some(position) = self.data.iter().position(|v| *v == value) {
+            return Some(self.coord_at(position as u32));
+        }
+        None
+    }
+
+    pub fn new_with<U: Copy>(&self, value: U) -> Grid<U> {
+        Grid {
+            width: self.width,
+            height: self.height,
+            data: vec![value; (self.width * self.height) as usize]
         }
     }
 }
