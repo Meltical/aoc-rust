@@ -22,5 +22,6 @@ fn run_2024() {
     // year2024::day14::Day14::run_day(2024, 14);
     // year2024::day15::Day15::run_day(2024, 15);
     // year2024::day16::Day16::run_day(2024, 16);
-    year2024::day17::Day17::run_day(2024, 17);
+    // year2024::day17::Day17::run_day(2024, 17);
+    year2024::day18::Day18::run_day(2024, 18);
 }
