@@ -1,7 +1,7 @@
 use crate::util::coord::{Coord2, DIRECTIONS};
 use crate::util::day::Day;
 use crate::util::grid::Grid;
-use std::collections::{BinaryHeap, HashMap, HashSet};
+use std::collections::{BinaryHeap, HashMap};
 
 pub struct Day16;
 impl Day for Day16 {

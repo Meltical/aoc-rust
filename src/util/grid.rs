@@ -1,4 +1,3 @@
-use std::ops::{Index, IndexMut};
 use crate::util::coord::Coord2;
 
 #[derive(Clone)]
